@@ -6,4 +6,8 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </div>
 `;
 
-console.log(solveExpression("test(1,1,cos(0)cos(0))+e^10-ln(1)"));
+try {
+  console.log(solveExpression("1^-1"));
+} catch (err) {
+  console.log(err);
+}

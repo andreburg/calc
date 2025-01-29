@@ -1,11 +1,21 @@
+import { ValidationError } from "../error/validation-error";
+import { MathSymbol } from "../math-symbol";
+import { tokenizeExpression } from "../math-token";
 import { removeOuterBrackets } from "../parse/clean";
-import { Calculation } from "./calculation";
+import { extractStringRange, getBracketRange } from "../parse/query";
+import { NumberRange } from "../types";
+import { Calculation, TokenizeResult } from "./calculation";
 
-class MathFunction extends Calculation {
-  getArgs(expression: string, symbol: string, index: number): string[] {
-    const inputArgs = expression.slice(index + symbol.length);
-    const cleanedInputArgs = removeOuterBrackets(inputArgs);
-    return cleanedInputArgs.split(",");
+export class MathFunction extends Calculation {
+  tokenize(expression: string, symbol: MathSymbol): TokenizeResult {
+    const bracketRange = getBracketRange(expression, symbol);
+    if (!bracketRange) throw new ValidationError("Invalid function format.");
+    const range: NumberRange = [symbol.index, bracketRange[1] + 1];
+    const { extracted, expression: newExpression } = extractStringRange(expression, range);
+    const inputArgs = removeOuterBrackets(extracted.slice(symbol.index + `${symbol.value}`.length));
+    const args = inputArgs.split(",").map((arg) => tokenizeExpression(arg));
+    const token = { symbol, args, calculation: this };
+    return { token, expression: newExpression };
   }
 }
 
@@ -21,5 +31,4 @@ export const mathFunctions = {
   floor: new MathFunction((x) => Math.floor(x)),
   ceil: new MathFunction((x) => Math.floor(x)),
   round: new MathFunction((x) => Math.round(x)),
-  test: new MathFunction((x, y, z) => x + y + z),
 } as const;

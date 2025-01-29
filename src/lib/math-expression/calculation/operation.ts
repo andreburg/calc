@@ -1,12 +1,16 @@
+import { MathSymbol } from "../math-symbol";
+import { tokenizeExpression } from "../math-token";
 import { removeOuterBrackets } from "../parse/clean";
-import { Calculation, CalculationsMap } from "./calculation";
+import { Calculation, TokenizeResult } from "./calculation";
 
-class Operation extends Calculation {
-  getArgs(expression: string, symbol: string, index: number): string[] {
+export class Operation extends Calculation {
+  tokenize(expression: string, symbol: MathSymbol): TokenizeResult {
     expression = removeOuterBrackets(expression);
-    const lhs = expression.slice(0, index);
-    const rhs = expression.slice(index + symbol.length);
-    return [lhs, rhs];
+    let lhs = expression.slice(0, symbol.index);
+    let rhs = expression.slice(symbol.index + String(symbol.value).length);
+    const args = [lhs, rhs].map((arg) => tokenizeExpression(arg));
+    const token = { symbol, args, calculation: this };
+    return { token, expression: "" };
   }
 }
 
@@ -16,4 +20,5 @@ export const operations = {
   "*": new Operation((x1, x2) => x1 * x2),
   "/": new Operation((x1, x2) => x1 / x2),
   "^": new Operation((x1, x2) => Math.pow(x1, x2)),
-} as const satisfies CalculationsMap;
+  "%": new Operation((x, _) => x / 100),
+} as const;

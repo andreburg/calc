@@ -6,18 +6,22 @@ export function removeWhiteSpace(text: string): string {
 
 export function removeOuterBrackets(text: string): string {
   const matchingBrackets = getMatchingBrackets(text);
-  const hasOuterBracketPair = matchingBrackets.find(
-    ([start, end]) => start === 0 && end === text.length - 1
-  );
-  if (hasOuterBracketPair)
-    return removeOuterBrackets(text.replace(/^\(|\)$/g, ""));
+  const hasOuterBracketPair = matchingBrackets.find(([start, end]) => start === 0 && end === text.length - 1);
+  if (hasOuterBracketPair) return removeOuterBrackets(text.replace(/^\(|\)$/g, ""));
   return text;
 }
 
-// export function isolateProducts(text: string): string {
-//   return "";
-// }
-
 export function makeProductsExplicit(text: string): string {
-  return text.replace(/([a-zA-Z]+|\d+(\.\d+)?|\))(?=[a-zA-Z\d\(])/g, "$1*");
+  return text
+    .replace(/(\d)(\()/g, "$1*$2")
+    .replace(/(\))(\d)/g, "$1*$2")
+    .replace(/\)(\()/g, ")*(");
+}
+
+export function replaceNegativeNumbers(text: string): string {
+  return text.replace(/-/g, "+(-1)*");
+}
+
+export function cleanProducts(text: string): string {
+  return text.replace(/\*\+/g, "*").replace(/\/\+/g, "/");
 }
