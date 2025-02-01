@@ -1,6 +1,6 @@
 import { ValidationError } from "../error/validation-error";
-import { MathSymbol } from "../math-symbol";
-import { tokenizeExpression } from "../math-token";
+import { MathSymbol } from "../symbol";
+import { tokenizeExpression } from "../token";
 import { removeOuterBrackets } from "../parse/clean";
 import { extractStringRange, getBracketRange } from "../parse/query";
 import { NumberRange } from "../types";
@@ -29,6 +29,6 @@ export const mathFunctions = {
   ln: new MathFunction((x) => Math.log(x)),
   sqrt: new MathFunction((x) => x ^ (1 / 2)),
   floor: new MathFunction((x) => Math.floor(x)),
-  ceil: new MathFunction((x) => Math.floor(x)),
+  ceil: new MathFunction((x) => Math.ceil(x)),
   round: new MathFunction((x) => Math.round(x)),
 } as const;

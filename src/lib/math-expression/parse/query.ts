@@ -1,5 +1,5 @@
 import { ValidationError } from "../error/validation-error";
-import { MathSymbol } from "../math-symbol";
+import { MathSymbol } from "../symbol";
 import { NumberRange } from "../types";
 
 export const numberInRange = (number: number, range: NumberRange) => number >= range[0] && number <= range[1];

@@ -1,4 +1,4 @@
-import { productOfTokens, tokenizeExpression } from "./math-token";
+import { productOfTokens, tokenizeExpression } from "./token";
 import { removeWhiteSpace, removeOuterBrackets, makeProductsExplicit, replaceNegativeNumbers, cleanProducts } from "./parse/clean";
 
 export function cleanExpression(expression: string): string {
@@ -6,7 +6,7 @@ export function cleanExpression(expression: string): string {
 }
 
 export function solveExpression(expression: string): number {
-  console.log(cleanProducts(replaceNegativeNumbers(expression)));
-  const tokens = tokenizeExpression(cleanProducts(replaceNegativeNumbers(expression)));
+  expression = replaceNegativeNumbers(removeWhiteSpace(expression));
+  const tokens = tokenizeExpression(cleanProducts(expression));
   return productOfTokens(tokens);
 }

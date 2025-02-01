@@ -1,8 +1,8 @@
 import { calculations } from "./calculation";
 import { Calculation } from "./calculation/calculation";
 import { Constant } from "./calculation/constant";
-import { cleanExpression } from "./math-expression";
-import { getValidSymbols, MathSymbol } from "./math-symbol";
+import { cleanExpression } from "./expression";
+import { getValidSymbols, MathSymbol } from "./symbol";
 
 export type MathToken = {
   symbol: MathSymbol;

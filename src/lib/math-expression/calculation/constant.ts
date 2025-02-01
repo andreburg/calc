@@ -1,4 +1,4 @@
-import { MathSymbol } from "../math-symbol";
+import { MathSymbol } from "../symbol";
 import { extractStringRange } from "../parse/query";
 import { NumberRange } from "../types";
 import { Calculation, TokenizeResult } from "./calculation";

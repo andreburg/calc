@@ -1,5 +1,5 @@
-import { MathSymbol } from "../math-symbol";
-import { MathToken } from "../math-token";
+import { MathSymbol } from "../symbol";
+import { MathToken } from "../token";
 
 export type TokenizeResult = { token: MathToken; expression: string };
 
