@@ -1,22 +1,21 @@
 import { createElement } from "../../../../utils/virtual-element";
 import { StateObject } from "../../../../utils/state-object";
+import { dropdownTrigger } from "./dropdown-trigger";
+import { dropdownContent } from "./dropdown-content";
 
-export function dropdown({ label }: { label: string }) {
+export function dropdown({ label, child }: { label: string; child: HTMLElement | string }) {
   const open = new StateObject(false);
-  return createElement({
+  const element = createElement({
     type: "div",
     props: {
-      children: [
-        createElement({
-          type: "button",
-          props: {
-            innerText: label,
-            onclick: () => {
-              open.value = !open.value;
-            },
-          },
-        }),
-      ],
+      children: [dropdownTrigger({ label, open }), dropdownContent({ open, child })],
+      className: "dropdown",
     },
   });
+
+  window.addEventListener("click", (e) => {
+    if (!element.contains(e.target as Node)) open.value = false;
+  });
+
+  return element;
 }

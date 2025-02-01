@@ -9,6 +9,7 @@ export function dropdownTrigger({ label, open }: { label: string; open: StateObj
       onclick: () => {
         open.value = !open.value;
       },
+      className: "dropdown-trigger",
     },
   });
 }
