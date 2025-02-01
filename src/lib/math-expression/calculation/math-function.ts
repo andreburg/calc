@@ -20,12 +20,12 @@ export class MathFunction extends Calculation {
 }
 
 export const mathFunctions = {
-  cosec: new MathFunction((x) => Math.asin(x) / 180),
-  sec: new MathFunction((x) => Math.acos(x) / 180),
-  cot: new MathFunction((x) => Math.atan(x) / 180),
-  sin: new MathFunction((x) => Math.sin(x * 180)),
-  cos: new MathFunction((x) => Math.cos(x * 180)),
-  tan: new MathFunction((x) => Math.tan(x * 180)),
+  cosec: new MathFunction((x) => Math.asin(x) / (Math.PI / 180)),
+  sec: new MathFunction((x) => Math.acos(x) / (Math.PI / 180)),
+  cot: new MathFunction((x) => Math.atan(x) / (Math.PI / 180)),
+  sin: new MathFunction((x) => Math.sin(x * (Math.PI / 180))),
+  cos: new MathFunction((x) => Math.cos(x * (Math.PI / 180))),
+  tan: new MathFunction((x) => Math.tan(x * (Math.PI / 180))),
   ln: new MathFunction((x) => Math.log(x)),
   sqrt: new MathFunction((x) => x ^ (1 / 2)),
   floor: new MathFunction((x) => Math.floor(x)),
