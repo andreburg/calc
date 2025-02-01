@@ -1,13 +1,4 @@
-import { solveExpression } from "./lib/math-expression/math-expression";
 import "./style.css";
+import { root } from "./application/core/component/root";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-  </div>
-`;
-
-try {
-  console.log(solveExpression("1^-1"));
-} catch (err) {
-  console.log(err);
-}
+document.querySelector<HTMLDivElement>("#app")?.replaceWith(root());
