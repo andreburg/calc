@@ -7,7 +7,12 @@ import { calculatorButton } from "./calculator-button";
 
 export function equalsButton() {
   function onEquals() {
-    const output = String(solveExpression(expression.value, settings.value));
+    let output: string | undefined;
+    try {
+      output = String(solveExpression(expression.value, settings.value));
+    } catch (error) {
+      output = "#ERROR";
+    }
     historicalCalculationService.create({ input: expression.value, output });
     expression.value = output;
     calculations.value = historicalCalculationService.getAll();
