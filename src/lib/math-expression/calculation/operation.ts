@@ -12,11 +12,3 @@ export class Operation extends Calculation {
     return { token, expression: "" };
   }
 }
-
-export const operations = {
-  "+": new Operation((x1, x2) => x1 + x2),
-  "-": new Operation((x1, x2) => x1 - x2),
-  "/": new Operation((x1, x2) => x1 / x2),
-  "^": new Operation((x1, x2) => Math.pow(x1, x2)),
-  "*": new Operation((x1, x2) => x1 * x2),
-} as const;
