@@ -1,12 +1,12 @@
-export type VirtualElementType<T> = T extends keyof HTMLElementTagNameMap ? T : never;
-export type VirtualElementProps<T> = {
+export type VirtualElementType = keyof HTMLElementTagNameMap;
+export type VirtualElementProps = {
   children?: (HTMLElement | string)[];
   [key: string]: any;
-} & Omit<Partial<HTMLElementTagNameMap[VirtualElementType<T>]>, "children">;
+} & Omit<Partial<HTMLElementTagNameMap[VirtualElementType]>, "children">;
 
-export type VirtualElement<T> = { type: VirtualElementType<T>; props?: VirtualElementProps<T> };
+export type VirtualElement = { type: VirtualElementType; props?: VirtualElementProps };
 
-export function createElement<T>(element: VirtualElement<T>): HTMLElementTagNameMap[VirtualElementType<T>] {
+export function createElement(element: VirtualElement): HTMLElementTagNameMap[VirtualElementType] {
   const root = populateHTMLElementProps(document.createElement(element.type), element.props);
   element.props?.children?.map((child) => {
     if (child instanceof HTMLElement) root.appendChild(child);
@@ -17,10 +17,10 @@ export function createElement<T>(element: VirtualElement<T>): HTMLElementTagName
     }
     return child;
   });
-  return root as HTMLElementTagNameMap[VirtualElementType<T>];
+  return root as HTMLElementTagNameMap[VirtualElementType];
 }
 
-function populateHTMLElementProps(element: HTMLElement, props?: VirtualElementProps<any>) {
+function populateHTMLElementProps(element: HTMLElement, props?: VirtualElementProps) {
   for (let [key, value] of Object.entries(props || {})) {
     if (key in element && key !== "children") {
       try {
