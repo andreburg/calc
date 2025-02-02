@@ -1,0 +1,18 @@
+.history-button {
+  background-color: hsl(var(--yellow));
+}
+
+.history-dropdown {
+  height: 20rem;
+  overflow: auto;
+}
+
+.dropdown:has(.history-button) {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .dropdown:has(.history-button) {
+    display: block;
+  }
+}

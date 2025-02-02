@@ -1,7 +1,7 @@
 import { createElement } from "../../../utils/virtual-element";
-import { StateObject } from "../../../utils/state-object";
+import { expression } from "../state/expression";
 
-export function calculatorInput({ expression }: { expression: StateObject<string> }) {
+export function calculatorInput() {
   let domElement = createElement({
     type: "input",
     props: {
@@ -10,6 +10,7 @@ export function calculatorInput({ expression }: { expression: StateObject<string
         event.preventDefault();
         expression.value = (event.target as HTMLInputElement).value;
       },
+      className: "brutal-container brutal-shadow-container",
     },
   });
 

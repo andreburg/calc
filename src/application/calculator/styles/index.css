@@ -1,0 +1,47 @@
+.calculator-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.number-buttons {
+  direction: rtl;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  background-color: hsl(var(--orange));
+  padding: var(--space-lg);
+  box-sizing: border-box;
+  box-shadow: var(--shadow-md);
+
+  input {
+    font-size: large;
+    padding: 1rem;
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.angle-unit-switch {
+  font-size: x-small;
+  background-color: hsl(var(--blue));
+  font-weight: 900;
+}
+
+.option-row-dropdown-button {
+  background-color: hsl(var(--primary));
+}
+
+.equals-button {
+  background-color: hsl(var(--grey));
+}
+
+.edit-button {
+  font-size: x-small;
+  font-weight: 900;
+  background-color: hsl(var(--green));
+}

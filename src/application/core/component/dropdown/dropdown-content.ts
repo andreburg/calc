@@ -6,7 +6,7 @@ export function dropdownContent({ open, child }: { open: StateObject<boolean>; c
     type: "div",
     props: {
       children: [child],
-      className: "dropdown-content",
+      className: "dropdown-content brutal-container brutal-shadow-container",
       ariaHidden: "true",
     },
   });

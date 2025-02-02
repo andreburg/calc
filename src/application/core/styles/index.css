@@ -1,0 +1,26 @@
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.footer-link {
+  display: flex;
+  gap: var(--space-sm);
+  color: hsl(var(--primary-foreground));
+}
+
+header {
+  padding: var(--space-lg);
+  background-color: hsl(var(--secondary));
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: start;
+  display: flex;
+  span {
+    font-weight: 900;
+    font-size: xx-large;
+    width: min-content;
+  }
+}

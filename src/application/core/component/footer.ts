@@ -12,6 +12,6 @@ export function footer() {
   ];
   return createElement({
     type: "footer",
-    props: { children: links.map((link) => footerLink(link)) },
+    props: { children: links.map((link) => footerLink(link)), className: "flex-col" },
   });
 }

@@ -1,0 +1,27 @@
+.dropdown-content {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-md);
+  background-color: hsl(var(--secondary));
+  translate: 0 var(--space-xs);
+  z-index: 1;
+}
+
+.dropdown-trigger {
+  font-size: x-small;
+  font-weight: 900;
+}
+
+.dropdown-horizontal-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  width: 100%;
+  font-size: x-small;
+  gap: var(--space-sm);
+}
+
+.dropdown-context {
+  position: relative;
+}

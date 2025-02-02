@@ -1,0 +1,49 @@
+.historical-calculation {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-sm);
+  box-sizing: border-box;
+  place-items: center;
+  max-width: 100%;
+  width: 100%;
+
+  span {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    max-width: 100%;
+  }
+}
+
+.delete-calculation-button {
+  border-radius: 100%;
+  padding: 0;
+  width: 1.5rem;
+  background-color: hsl(var(--orange));
+  font-weight: 900;
+  aspect-ratio: 1/1;
+  place-items: center;
+  font-size: x-small;
+}
+
+.history {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: var(--space-lg);
+  background-color: hsl(var(--secondary));
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.history-container {
+  display: block;
+}
+
+@media (max-width: 920px) {
+  .history-container {
+    display: none;
+  }
+}

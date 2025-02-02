@@ -1,16 +1,11 @@
 import { createElement } from "../../../utils/virtual-element";
-import { historicalCalculationService } from "../../../services/historical-calculation-service";
 import { calculations } from "../../calculator/state/calculations";
 import { historicalCalculation } from "./historical-calculation";
+import "../styles/index.css";
 
-export function history({ onLoad }: { onLoad: (input: string) => void }) {
-  function onDelete(id: number) {
-    historicalCalculationService.deleteById(id);
-    calculations.value = historicalCalculationService.getAll();
-  }
-
+export function history() {
   function render() {
-    const historicalCalculations = calculations.value.map((calculation) => historicalCalculation({ calculation, onDelete, onLoad }));
+    const historicalCalculations = calculations.value.map((calculation) => historicalCalculation({ calculation }));
     return createElement({
       type: "div",
       props: {
@@ -20,7 +15,7 @@ export function history({ onLoad }: { onLoad: (input: string) => void }) {
             props: { children: historicalCalculations, className: "history" },
           }),
         ],
-        className: "history-container",
+        className: "dropdown-context brutal-container history-container",
       },
     });
   }

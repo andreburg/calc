@@ -1,32 +1,30 @@
 import { createElement } from "../../../utils/virtual-element";
-import { StateObject } from "../../../utils/state-object";
-import { solveExpression } from "../../../lib/math-expression/expression";
-import { calculatorNumberButtons } from "./calculator-number-buttons";
-import { calculatorFunctionButtons } from "./calculator-function-buttons";
-import { calculatorOperationButtons } from "./calculator-operation-buttons";
-import { historicalCalculationService } from "../../../services/historical-calculation-service";
-import { calculations } from "../state/calculations";
+import { operationButtons } from "./button/operation-buttons";
+import { optionRow } from "./option-row";
+import { numpad } from "./button/numpad";
+import { editButtons } from "./button-groups/edit-buttons";
+import { formatButtons } from "./button/format-buttons";
 
-export function calculatorButtons({ expression }: { expression: StateObject<string> }) {
-  const onInput = (value: string) => (expression.value = expression.value + value);
-  const onClear = () => (expression.value = "");
-  const onDelete = () => (expression.value = expression.value.slice(0, expression.value.length - 1));
-  function onEquals() {
-    const output = String(solveExpression(expression.value));
-    historicalCalculationService.create({ input: expression.value, output });
-    expression.value = output;
-    calculations.value = historicalCalculationService.getAll();
-  }
-
+export function calculatorButtons() {
+  const miscButtons = createElement({
+    type: "div",
+    props: {
+      children: [editButtons(), formatButtons(), operationButtons()],
+      className: "flex-col flex-1",
+    },
+  });
+  const mainButtons = createElement({
+    type: "div",
+    props: {
+      children: [miscButtons, numpad()],
+      className: "flex-row flex-1",
+    },
+  });
   return createElement({
     type: "div",
     props: {
-      children: [
-        calculatorFunctionButtons({ onInput }),
-        calculatorNumberButtons({ onInput }),
-        calculatorOperationButtons({ onClear, onDelete, onEquals, onInput }),
-      ],
-      className: "calculator-buttons",
+      children: [optionRow(), mainButtons],
+      className: "flex-row gap-md",
     },
   });
 }
